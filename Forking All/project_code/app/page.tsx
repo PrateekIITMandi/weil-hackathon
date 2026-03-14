@@ -1,45 +1,40 @@
 "use client"
 
 import { useState } from "react"
-import Sidebar from "@/components/Sidebar"
 import ChatWindow from "@/components/ChatWindow"
 import MessageInput from "@/components/MessageInput"
-import { createThread, sendQuery } from "@/services/chatbot"
+import { runAgentTask } from "@/services/agent"
+import { buildPrompt, Message } from "@/lib/promptBuilder"
 
 export default function Home() {
-  const [threadId, setThreadId] = useState<number | null>(null)
-  const [messages, setMessages] = useState<any[]>([])
-  const [threads, setThreads] = useState<string[]>([])
 
-  const newChat = async () => {
-    const id = await createThread()
-    setThreadId(id)
-    setThreads([...threads, "New Chat"])
-  }
+  const [messages, setMessages] = useState<Message[]>([])
 
-  const sendMessage = async (query: string) => {
-    if (!threadId) return
+  const sendMessage = async (text: string) => {
 
-    let response = ""
+    const newMessages: Message[] = [
+      ...messages,
+      { role: "user", content: text }
+    ]
 
-    await sendQuery(threadId, query, (chunk) => {
-      response = chunk
-      setMessages((prev) => [...prev, { query, response }])
-    })
+    setMessages(newMessages)
+
+    const prompt = buildPrompt(newMessages)
+
+    const response = await runAgentTask(prompt)
+
+    const updatedMessages: Message[] = [
+      ...newMessages,
+      { role: "assistant", content: response }
+    ]
+
+    setMessages(updatedMessages)
   }
 
   return (
-    <div className="flex h-screen">
-      <Sidebar
-        threads={threads}
-        createThread={newChat}
-        selectThread={setThreadId}
-      />
-
-      <div className="flex flex-col flex-1">
-        <ChatWindow messages={messages} />
-        <MessageInput send={sendMessage} />
-      </div>
+    <div className="flex flex-col h-screen bg-black text-white">
+      <ChatWindow messages={messages} />
+      <MessageInput send={sendMessage} />
     </div>
   )
 }

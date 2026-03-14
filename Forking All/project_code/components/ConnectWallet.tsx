@@ -1,6 +1,6 @@
 "use client"
 
-import { getWallet } from "@/services/wallet"
+import { getWallet } from "@/services/wallets"
 
 export default function ConnectWallet() {
   const connect = async () => {

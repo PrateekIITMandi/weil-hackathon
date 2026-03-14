@@ -1,13 +1,16 @@
-import { WeilWallet } from "@weilliptic/weil-sdk"
+import { WeilWalletConnection } from "@weilliptic/weil-sdk"
 
-const privateKey =
-  "0000000000000000000000000000000000000000000000000000000000000000"
+let wallet: WeilWalletConnection | null = null
 
-export const getWallet = async () => {
+export const getWallet = () => {
+  if (wallet) return wallet
 
-  const wallet = new WeilWallet({
-    privateKey,
-    sentinelEndpoint: "http://localhost:8000",
+  if (!(window as any).WeilWallet) {
+    throw new Error("WeilWallet extension not installed")
+  }
+
+  wallet = new WeilWalletConnection({
+    walletProvider: (window as any).WeilWallet,
   })
 
   return wallet

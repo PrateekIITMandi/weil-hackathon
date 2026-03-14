@@ -1,4 +1,4 @@
-import { getWallet } from "./wallet"
+import { getWallet } from "./wallets"
 import { Chatbot } from "@/contracts/bindings"
 import { CONTRACT_ADDRESS } from "@/lib/constants"
 
