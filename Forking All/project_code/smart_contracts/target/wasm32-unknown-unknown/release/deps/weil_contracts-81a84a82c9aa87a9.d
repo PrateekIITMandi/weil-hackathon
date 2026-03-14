@@ -1,0 +1,10 @@
+/Users/devbhaskar/Desktop/Dev/Weilliptic/weil-hackathon/Forking All/project_code/smart_contracts/target/wasm32-unknown-unknown/release/deps/weil_contracts-81a84a82c9aa87a9.d: /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/lib.rs /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/fungible.rs /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/non_fungible.rs /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/key_management.rs
+
+/Users/devbhaskar/Desktop/Dev/Weilliptic/weil-hackathon/Forking All/project_code/smart_contracts/target/wasm32-unknown-unknown/release/deps/libweil_contracts-81a84a82c9aa87a9.rlib: /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/lib.rs /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/fungible.rs /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/non_fungible.rs /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/key_management.rs
+
+/Users/devbhaskar/Desktop/Dev/Weilliptic/weil-hackathon/Forking All/project_code/smart_contracts/target/wasm32-unknown-unknown/release/deps/libweil_contracts-81a84a82c9aa87a9.rmeta: /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/lib.rs /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/fungible.rs /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/non_fungible.rs /Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/key_management.rs
+
+/Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/lib.rs:
+/Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/fungible.rs:
+/Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/non_fungible.rs:
+/Users/devbhaskar/Desktop/Dev/Weilliptic\ Template/adk/rust/weil_rs/weil_contracts/src/key_management.rs:

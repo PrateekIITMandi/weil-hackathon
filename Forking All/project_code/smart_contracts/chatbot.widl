@@ -1,9 +1,0 @@
-interface Chatbot {
-    query func thread_list() -> list<string>;
-    query func thread_details(id: u32) -> result<list<tuple<string,string>>,string>;
-    query func list_models() -> result<list<string>,string>;
-    query func chat_query(id:u32, query_str:string) -> result<byteStream,string>;
-    mutate func append_response(id:u32, query_str:string, answer:string, title:option<string>) -> result<(),string>;
-    mutate func new_thread(model:string) -> u32;
-    mutate func update_thread_title(id:u32,new_title:string) -> result<(),string>;
-}
