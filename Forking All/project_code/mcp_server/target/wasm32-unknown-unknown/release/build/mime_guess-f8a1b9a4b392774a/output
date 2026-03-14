@@ -1,0 +1,1 @@
+cargo:rustc-env=MIME_TYPES_GENERATED_PATH=/Users/devbhaskar/Desktop/Dev/Weilliptic/weil-hackathon/Forking All/project_code/mcp_server/target/wasm32-unknown-unknown/release/build/mime_guess-f8a1b9a4b392774a/out/mime_types_generated.rs
