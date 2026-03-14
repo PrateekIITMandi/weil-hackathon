@@ -1,4 +1,4 @@
-import { getWallet } from "./wallet"
+import { getWallet } from "./wallets"
 import { CONTRACT_ADDRESS } from "@/lib/constants"
 
 export const runAgentTask = async (prompt: string) => {
