@@ -1,0 +1,15 @@
+@mcp
+interface Arithmetic {
+    // adds two numbers
+    query func add(
+        // the first number
+        x: int, 
+        // the number to add with the first one
+        y: int) -> int;
+    // multiply two numbers
+    query func multiply(
+        // the first number
+        x: int,
+        // the number to multiply with the first one
+        y: int) -> int
+}
