@@ -2,25 +2,27 @@
 
 ### Web4 Intelligent Agent DApp built on WeilChain
 
-An **AI-powered decentralized chatbot** that interacts with a **BaseAgent smart contract** on **WeilChain** to execute natural language tasks using an on-chain LLM.
+An **AI-powered decentralized chatbot** that interacts with a **BaseAgent smart contract** on **WeilChain** and leverages **MCP (Model Context Protocol) servers** to execute natural language tasks using an on-chain LLM.
 
 This project demonstrates how to build **agentic AI applications in Web4** using:
 
 * **WeilChain smart contracts**
+* **Model Context Protocol (MCP) servers**
 * **Agent frameworks**
 * **On-chain LLM execution**
 * **Next.js + TypeScript frontend**
 
-The application allows users to interact with an AI agent through a chat interface. The frontend constructs the full conversation prompt and sends it to the **BaseAgent contract**, which invokes the LLM and returns the response.
+The application allows users to interact with an AI agent through a chat interface. The frontend constructs the full conversation prompt and sends it to the **BaseAgent contract**, which invokes the **LLM and available MCP tools** to generate intelligent responses.
 
 ---
 
 # 🚀 Project Overview
 
 Traditional AI applications run entirely off-chain.
-This project demonstrates a **hybrid architecture** where AI reasoning is executed via blockchain smart contracts.
 
-Users interact with the system like a normal chatbot, but behind the scenes the request is processed by:
+This project demonstrates a **hybrid Web4 architecture** where AI reasoning and tool usage are orchestrated by blockchain smart contracts.
+
+Users interact with the system like a normal chatbot, but behind the scenes the request flows through an **agent + MCP tool ecosystem**.
 
 ```
 Frontend UI
@@ -33,14 +35,42 @@ BaseAgentHelper
      │
      ▼
 LLM Node
+     │
+     ▼
+MCP Tool Servers
 ```
 
-The blockchain acts as a **trusted execution layer for AI agents**.
+The blockchain acts as a **trusted orchestration layer for intelligent agents and tools**.
 
 ---
+
+# 🧠 What is MCP?
+
+**Model Context Protocol (MCP)** is a standardized interface that allows AI models to interact with external tools.
+
+On WeilChain:
+
+* MCP servers are **smart contract applets**
+* Each function becomes an **AI-callable tool**
+* Tools are described in structured JSON
+* The AI model decides when to call them
+
+Example tools exposed by an MCP server:
+
+```
+add(x, y)
+multiply(x, y)
+```
+
+The AI agent can automatically call these tools while solving tasks.
+
+This enables **true agentic AI systems** where the LLM can reason and execute actions.
+
+---
+
 # 🧠 System Architecture
 
-The application follows a **Web4 agent architecture**, where the blockchain orchestrates AI execution while the frontend manages interaction and context.
+The application follows a **Web4 agent architecture**, where the blockchain orchestrates AI execution and tool access while the frontend manages user interaction.
 
 ```text
 ┌──────────────────────────┐
@@ -83,6 +113,12 @@ The application follows a **Web4 agent architecture**, where the blockchain orch
                │
                ▼
 ┌──────────────────────────┐
+│       MCP Servers        │
+│  AI-callable tool APIs   │
+└──────────────┬───────────┘
+               │
+               ▼
+┌──────────────────────────┐
 │     Response Returned    │
 │    to Frontend UI        │
 └──────────────────────────┘
@@ -90,62 +126,239 @@ The application follows a **Web4 agent architecture**, where the blockchain orch
 
 ---
 
+# 🧠 Visual Overview — AI Agent + MCP Tool Ecosystem
+
+To better illustrate the power of **agentic AI on WeilChain**, the diagram below shows how a user query flows through the **AI agent**, **MCP tool servers**, and **blockchain infrastructure**.
+
+```text
+                     ┌───────────────────────────────┐
+                     │            USER               │
+                     │   Natural language prompt     │
+                     │  "Swap 100 USDT to ETH"       │
+                     └───────────────┬───────────────┘
+                                     │
+                                     ▼
+                   ┌──────────────────────────────────┐
+                   │        Next.js Chat UI           │
+                   │   Stores conversation history    │
+                   │   Builds structured prompt       │
+                   └───────────────┬──────────────────┘
+                                   │
+                                   ▼
+                     ┌──────────────────────────┐
+                     │      WeilWallet SDK      │
+                     │  Sends contract request  │
+                     └───────────────┬──────────┘
+                                     │
+                                     ▼
+                ┌─────────────────────────────────────┐
+                │        BaseAgent Smart Contract     │
+                │        run_task(task_prompt)        │
+                └───────────────┬─────────────────────┘
+                                │
+                                ▼
+                ┌─────────────────────────────────────┐
+                │        BaseAgentHelper              │
+                │  LLM orchestration + tool routing   │
+                └───────────────┬─────────────────────┘
+                                │
+                                ▼
+                    ┌─────────────────────────┐
+                    │        LLM Model        │
+                    │        GPT-5.1          │
+                    │  reasoning + planning   │
+                    └───────────┬─────────────┘
+                                │
+                                │ tool calls via MCP
+                                ▼
+      ┌────────────────────────────────────────────────────────┐
+      │                MCP Tool Servers (Applet Layer)         │
+      │                                                        │
+      │  ┌───────────────────┐   ┌─────────────────────────┐   │
+      │  │ Arithmetic MCP    │   │ DeFi MCP (future idea)  │   │
+      │  │ add(x,y)          │   │ swap_tokens()           │   │
+      │  │ multiply(x,y)     │   │ stake_tokens()          │   │
+      │  └───────────────────┘   └─────────────────────────┘   │
+      │                                                        │
+      └───────────────┬────────────────────────────────────────┘
+                      │
+                      ▼
+              ┌──────────────────┐
+              │  Tool Execution  │
+              │  Results return  │
+              └─────────┬────────┘
+                        │
+                        ▼
+                ┌──────────────────┐
+                │  LLM Final Reply │
+                └─────────┬────────┘
+                          │
+                          ▼
+                ┌──────────────────┐
+                │  Chat UI Update  │
+                │  Response shown  │
+                └──────────────────┘
+```
+
+---
+
+# 🧠 What Makes This Web4
+
+This architecture represents a **new paradigm of decentralized intelligence**:
+
+| Layer       | Responsibility                       |
+| ----------- | ------------------------------------ |
+| Frontend    | User interaction and prompt building |
+| Blockchain  | Agent execution and orchestration    |
+| AI Model    | Reasoning and planning               |
+| MCP Servers | External tools and actions           |
+
+Instead of AI being isolated in centralized APIs, **intelligence becomes composable and decentralized**.
+
+---
+
+# ⚡ Why MCP is Powerful
+
+Traditional LLM chatbots can only generate text.
+
+With MCP tools, the AI agent can:
+
+* call functions
+* interact with external services
+* perform blockchain actions
+* retrieve real-time data
+
+Example reasoning flow:
+
+```text
+User: What is 7 × 8?
+
+LLM decides:
+→ call MCP tool multiply(7,8)
+
+MCP returns:
+56
+
+LLM responds:
+"The result is 56."
+```
+
+The same architecture can scale to complex systems:
+
+```text
+User: Swap 100 USDT to ETH
+
+LLM decides:
+→ call swap_tokens() MCP tool
+```
+
+---
+
+# 🚀 Future Vision: Autonomous Web4 Agents
+
+This architecture unlocks powerful future possibilities:
+
+### AI DeFi Copilot
+
+Natural language → blockchain transactions
+
+### DAO Governance Agents
+
+AI assistants that interact with governance contracts
+
+### Research Agents
+
+AI models calling external knowledge tools
+
+### Autonomous Trading Bots
+
+AI agents executing strategies on-chain
+
+---
+
+# 🎯 Hackathon Insight
+
+The key idea demonstrated in this project:
+
+**AI agents + decentralized tools = programmable intelligence layer for Web4**
+
+Instead of just deploying smart contracts, developers can now deploy:
+
+* AI agents
+* tool ecosystems
+* autonomous workflows
+
+All running on decentralized infrastructure.
+
+---
+
+# 🌌 One Sentence Summary
+
+**This project demonstrates how AI agents on WeilChain can reason with LLMs and interact with decentralized tools through MCP servers, creating the foundation for programmable Web4 intelligence.**
+
+
 # 🧩 Interaction Sequence
 
-The system executes the following steps:
-
 1. User sends a message through the chat UI.
-2. The frontend stores the conversation history locally.
-3. The prompt builder converts the chat history into a structured prompt.
+2. The frontend stores conversation history locally.
+3. The prompt builder converts chat history into a structured prompt.
 4. The frontend calls the **BaseAgent smart contract**.
 5. The contract forwards the request to **BaseAgentHelper**.
 6. The helper invokes the **LLM model on the chain**.
-7. The model generates a response.
-8. The response is returned to the frontend and displayed to the user.
+7. The model may call **MCP tool servers** if required.
+8. MCP tools execute their functions.
+9. Results return to the LLM.
+10. Final response is returned to the frontend UI.
 
 ---
 
 # ⚡ Why This Architecture
 
-This design separates responsibilities cleanly:
+This design separates responsibilities clearly:
 
 Frontend
 → manages conversation state and UI
 
 Blockchain
-→ orchestrates AI execution
+→ orchestrates AI agents and tool access
 
 AI Layer
-→ handles reasoning and response generation
+→ performs reasoning and decision-making
+
+MCP Layer
+→ provides external functionality as tools
 
 Benefits:
 
 * minimal on-chain storage
-* fast response time
-* simple contract interface
-* scalable AI agents
-* composable Web4 architecture
+* composable AI tools
+* decentralized AI execution
+* scalable agent architecture
+* transparent tool usage
 
-
-
+---
 
 # 🧩 Key Features
 
 ### 🤖 AI Agent Smart Contract
 
-Uses **BaseAgent + BaseAgentHelper** to execute AI tasks using an LLM.
+Uses **BaseAgent + BaseAgentHelper** to execute AI tasks.
+
+### 🧰 MCP Tool Integration
+
+AI models can call **external tools via MCP servers**.
 
 ### 💬 Chat Interface
 
-Clean conversational UI built with **Next.js + Tailwind**.
+Built with **Next.js + Tailwind**.
 
 ### 🧠 Context-aware prompts
 
-Frontend stores chat history and constructs a full prompt before sending it to the contract.
+Frontend stores conversation history and constructs prompts dynamically.
 
 ### 🔗 Blockchain AI execution
 
-Smart contract calls an **LLM node on the chain**.
+Smart contract orchestrates AI reasoning and tool access.
 
 ### ⚡ Minimal on-chain state
 
@@ -153,12 +366,7 @@ No chat history stored on chain → faster execution.
 
 ### 🧱 Modular architecture
 
-Easy to extend for:
-
-* AI DeFi agents
-* DAO assistants
-* autonomous agents
-* research copilots
+Easily extendable with new MCP tools.
 
 ---
 
@@ -182,6 +390,9 @@ BaseAgentHelper
         │
         ▼
 LLM Node (GPT-5.1)
+        │
+        ▼
+MCP Tool Servers
 ```
 
 ---
@@ -237,13 +448,11 @@ interface BaseAgent {
 }
 ```
 
-The contract receives a **task prompt**, sends it to the LLM helper, and returns the response.
+The contract receives a **task prompt**, sends it to the AI agent helper, and returns the response.
 
 ---
 
 ### Rust Contract Logic
-
-The contract interacts with **BaseAgentHelper** to invoke the AI model.
 
 ```
 run_task(task_prompt)
@@ -253,6 +462,9 @@ BaseAgentHelper.run_task()
     │
     ▼
 LLM model execution
+    │
+    ▼
+Optional MCP tool calls
 ```
 
 Model used:
@@ -287,7 +499,7 @@ Assistant: CNN stands for convolutional neural network...
 User: explain the second part
 ```
 
-This enables **context-aware responses**.
+This enables **context-aware AI responses**.
 
 ---
 
@@ -310,8 +522,6 @@ Main UI components:
 ---
 
 # 🔌 Weil SDK Integration
-
-The project uses the official **Weil SDK**.
 
 Example wallet connection:
 
@@ -337,7 +547,7 @@ wallet.contracts.execute(
 
 # 🛠 Installation
 
-### 1️⃣ Install dependencies
+### 1 Install dependencies
 
 ```
 npm install
@@ -351,43 +561,47 @@ npm install @weilliptic/weil-sdk
 
 ---
 
-### 2️⃣ Install WeilWallet
+### 2 Install WeilWallet
 
 Install the **WeilWallet browser extension**.
 
 ---
 
-### 3️⃣ Compile the smart contract
-
-Navigate to the smart contract folder.
+### 3 Compile the smart contract
 
 ```
 cd smart_contracts
-```
-
-Compile:
-
-```
 cargo build --target wasm32-unknown-unknown --release
 ```
 
-The compiled WASM will appear in:
+---
+
+### 4 Deploy MCP servers (optional tools)
+
+Example MCP deployment:
 
 ```
-target/wasm32-unknown-unknown/release
+deploy -f arithmetic_mcp.wasm -p arithmetic.widl
+```
+
+Copy the MCP contract address.
+
+---
+
+### 5 Deploy BaseAgent
+
+Deploy with MCP server address:
+
+```
+deploy \
+-f base_agent.wasm \
+-p base_agent.widl \
+-i '{"description":"AI chatbot agent","mcp_contract_address":"MCP_ADDRESS"}'
 ```
 
 ---
 
-### 4️⃣ Deploy the contract
-
-Deploy using the Weil CLI or SDK.
-
-Save the deployed contract address.
-
----
-
-### 5️⃣ Configure the frontend
+### 6 Configure frontend
 
 Update:
 
@@ -396,14 +610,14 @@ lib/constants.ts
 ```
 
 ```
-export const CONTRACT_ADDRESS = "your_contract_address"
+export const CONTRACT_ADDRESS = "BASE_AGENT_ADDRESS"
 ```
 
-Note: remove `0x` prefix.
+(Remove `0x` prefix.)
 
 ---
 
-### 6️⃣ Run the application
+### 7 Run the app
 
 ```
 npm run dev
@@ -422,59 +636,48 @@ http://localhost:3000
 1️⃣ User opens the DApp
 2️⃣ Connects WeilWallet
 3️⃣ Sends a message
-4️⃣ Frontend constructs full conversation prompt
+4️⃣ Frontend builds conversation prompt
 5️⃣ Prompt sent to BaseAgent contract
-6️⃣ Contract calls LLM helper
-7️⃣ LLM response returned
-8️⃣ Chat UI updates
-
----
-
-# 🧪 Example Query
-
-User input:
-
-```
-Explain convolutional neural networks in simple terms
-```
-
-Response is generated by the **on-chain LLM agent**.
+6️⃣ LLM processes prompt
+7️⃣ AI optionally calls MCP tools
+8️⃣ Final response returned
+9️⃣ Chat UI updates
 
 ---
 
 # 🔮 Future Improvements
 
-Possible upgrades:
+Possible extensions:
 
-### 🔹 Streaming LLM responses
+### 🔹 More MCP tool servers
 
-Token streaming from the contract.
+* DeFi operations
+* price feeds
+* blockchain analytics
+* DAO governance
 
-### 🔹 Persistent chat history
+### 🔹 Multi-agent systems
 
-Store conversations on chain.
+Agents coordinating through smart contracts.
 
-### 🔹 Agentic workflows
+### 🔹 Autonomous Web4 agents
 
-Allow AI agents to call other contracts.
+Agents triggered by on-chain events.
 
 ### 🔹 DeFi Copilot
 
-Convert natural language into DeFi transactions.
-
-### 🔹 Autonomous agents
-
-Agents that trigger actions based on blockchain events.
+Natural language → blockchain transactions.
 
 ---
 
 # 🧠 Web4 Vision
 
-This project represents a **Web4 paradigm** where:
+This project demonstrates a **Web4 paradigm** where:
 
-* AI agents interact with blockchain infrastructure
-* contracts orchestrate intelligent systems
-* users communicate with decentralized agents through natural language
+* AI agents live on decentralized infrastructure
+* blockchain coordinates intelligent systems
+* MCP tools enable real-world interaction
+* users interact through natural language
 
 ---
 
@@ -492,7 +695,5 @@ Exploring the intersection of:
 
 * Blockchain
 * AI Agents
-* Decentralized Infrastructure
+* MCP Tool Ecosystems
 * Autonomous Systems
-
----
