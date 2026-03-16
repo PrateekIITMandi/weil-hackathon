@@ -1,0 +1,10 @@
+/Users/devbhaskar/Desktop/Dev/Weilliptic/weil-hackathon/Forking All/project_code/contract/target/wasm32-unknown-unknown/release/deps/unicase-b7c369db28a2142c.d: /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/lib.rs /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/ascii.rs /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/unicode/mod.rs /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/unicode/map.rs
+
+/Users/devbhaskar/Desktop/Dev/Weilliptic/weil-hackathon/Forking All/project_code/contract/target/wasm32-unknown-unknown/release/deps/libunicase-b7c369db28a2142c.rlib: /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/lib.rs /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/ascii.rs /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/unicode/mod.rs /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/unicode/map.rs
+
+/Users/devbhaskar/Desktop/Dev/Weilliptic/weil-hackathon/Forking All/project_code/contract/target/wasm32-unknown-unknown/release/deps/libunicase-b7c369db28a2142c.rmeta: /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/lib.rs /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/ascii.rs /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/unicode/mod.rs /Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/unicode/map.rs
+
+/Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/lib.rs:
+/Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/ascii.rs:
+/Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/unicode/mod.rs:
+/Users/devbhaskar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicase-2.9.0/src/unicode/map.rs:

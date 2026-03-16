@@ -1,0 +1,4 @@
+@mcp
+interface Xpecto{
+    query func get_token_price(token_id: string) -> result<u64, string>
+}
